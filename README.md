@@ -9,7 +9,9 @@ To use
 ```
 
 ```js
-const bugReporter = new BugReporter('YourWebsite.com/bug/report');
+const url = '{{ route('report.bug') }}';
+const token = '{{ csrf_token() }}';
+const bugReporter = new BugReporter(url, token);
 ```
 
 ```html
