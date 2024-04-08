@@ -9,7 +9,7 @@ To use
 ```
 
 ```js
-     const bugReporter = new BugReporter('YourWebsite.com/bug/report');
+const bugReporter = new BugReporter('YourWebsite.com/bug/report');
 ```
 
 ```html
