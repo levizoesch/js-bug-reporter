@@ -1,7 +1,26 @@
+/*
+ *
+ * Copyright 2024 Traqza™. All rights reserved.
+ *
+ * This software is the confidential and proprietary information of Traqza™.
+ * You may not distribute, share, or sublicense this software to any third party
+ * without prior written permission from Traqza™.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * /
+ */
+
 class BugReporter {
 
-    constructor(postUrl) {
+    constructor(postUrl, token) {
         this.postUrl = postUrl;
+        this.token = token;
         this.currentUrl = window.location.href;
         this.previousUrl = document.referrer;
     }
@@ -46,13 +65,11 @@ class BugReporter {
         formData.append('comment', comment);
         formData.append('current_url', this.currentUrl);
         formData.append('previous_url', this.previousUrl);
+        formData.append('_token', this.token);
 
         fetch(this.postUrl, {
             method: 'POST',
             body: formData,
-            headers: {
-                'X-CSRF-Token': '{{ csrf_token() }}'
-            }
         })
         .then(response => {
             if (response.ok) {
