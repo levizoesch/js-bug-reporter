@@ -68,7 +68,7 @@ class BugReporter {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Failed to report bug. Please try again later.'
+                text: error.message
             });
         });
     }
